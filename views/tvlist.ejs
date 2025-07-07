@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TV List</title>
+</head>
+<body>
+  <h1>TV List</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <% columns.forEach(col => { %>
+          <th><%= col %></th>
+        <% }) %>
+      </tr>
+    </thead>
+    <tbody>
+      <% rows.forEach(row => { %>
+        <tr>
+          <% columns.forEach(col => { %>
+            <td><%= row[col] %></td>
+          <% }) %>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
