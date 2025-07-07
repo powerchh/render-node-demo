@@ -15,9 +15,12 @@ app.use(cors());
 app.get('/api/tvlist', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM tvlist');
-    res.json(result.rows);
+    // 将每一行转为逗号分隔的字符串
+    const lines = result.rows.map(row => Object.values(row).join(','));
+    // 返回纯文本，每行一个数据
+    res.type('text/plain').send(lines.join('\n'));
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).type('text/plain').send('数据库查询失败: ' + err.message);
   }
 });
 
