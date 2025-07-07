@@ -14,10 +14,9 @@ app.use(cors());
 // 提供 tvlist 数据的 API
 app.get('/api/tvlist', async (req, res) => {
   try {
-    const result = await pool.query('SELECT setname,url FROM tvlist');
-    // 将每一行转为逗号分隔的字符串
+    // 只查询 setname 和 url 字段
+    const result = await pool.query('SELECT set_name, url FROM tvlist');
     const lines = result.rows.map(row => Object.values(row).join(','));
-    // 返回纯文本，每行一个数据
     res.type('text/plain').send(lines.join('\n'));
   } catch (err) {
     res.status(500).type('text/plain').send('数据库查询失败: ' + err.message);
