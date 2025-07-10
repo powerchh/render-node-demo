@@ -28,7 +28,7 @@ app.get('/tvlist.txt', async (req, res) => {
   try {
     // 按分类查询数据
     const result = await pool.query(`
-      SELECT category, set_name, url 
+      SELECT id, category, set_name, url 
       FROM tvlist 
       ORDER BY category, set_name
     `);
@@ -41,6 +41,7 @@ app.get('/tvlist.txt', async (req, res) => {
         categories[category] = [];
       }
       categories[category].push({
+        id: row.id,
         set_name: row.set_name,
         url: row.url
       });
@@ -51,9 +52,9 @@ app.get('/tvlist.txt', async (req, res) => {
     for (const [category, channels] of Object.entries(categories)) {
       // 分类行：category,#genre#
       output += `${category},#genre#\n`;
-      // 该分类下的频道行：set_name,url
+      // 该分类下的频道行：set_name(ID),url
       channels.forEach(channel => {
-        output += `${channel.set_name},${channel.url}\n`;
+        output += `${channel.set_name}(${channel.id}),${channel.url}\n`;
       });
     }
     
