@@ -16,7 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 // 查询 tvlist 表并渲染
 app.get('/', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM tvlist');
+    const result = await pool.query("SELECT * FROM tvlist WHERE status = 'opened'");
     res.render('tvlist', { rows: result.rows, columns: result.fields.map(f => f.name) });
   } catch (err) {
     res.status(500).send('数据库查询失败: ' + err.message);
@@ -54,7 +54,7 @@ app.get('/tvlist.txt', async (req, res) => {
       output += `${category},#genre#\n`;
       // 该分类下的频道行：set_name(ID),url
       channels.forEach(channel => {
-        output += `${channel.set_name}(${channel.id}),${channel.url}\n`;
+        output += `${channel.set_name},${channel.url}\n`;
       });
     }
     
