@@ -17,14 +17,14 @@ jobs:
         run: mkdir -p tv
 
       - name: 下载 tvlist.txt 并保存
-        run: curl -s https://render-node-demo-6ijt.onrender.com/tvlist.txt -o /docs/tv/tvlist.txt
+        run: curl -s https://render-node-demo-6ijt.onrender.com/tvlist.txt -o docs/tv/tvlist.txt
 
       - name: 提交更新（如果有变化）
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-          git add /docs/tv/tvlist.txt
+          git add docs/tv/tvlist.txt
 
           if git diff --cached --quiet; then
             echo "文件无变化，跳过提交"
