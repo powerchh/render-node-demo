@@ -16,7 +16,8 @@ app.set('views', path.join(__dirname, 'views'));
 // 查询 tvlist 表并渲染
 app.get('/', async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM tvlist WHERE status = 'opened'");
+    //const result = await pool.query("SELECT * FROM tvlist WHERE status = 'opened'");
+    const result = await pool.query("SELECT * FROM tvlist WHERE id = 15");
     res.render('tvlist', { rows: result.rows, columns: result.fields.map(f => f.name) });
   } catch (err) {
     res.status(500).send('数据库查询失败: ' + err.message);
