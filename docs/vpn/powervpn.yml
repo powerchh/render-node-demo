@@ -227,8 +227,9 @@ proxies:
 
 proxy-groups:
   - name: 🚀 Proxy
-    type: url-test
+    type: select
     proxies:
+      - 西雅图Trojan-Go节点
       - 日本01|1x
       - 日本02|1x
       - 日本03|1x
