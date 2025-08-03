@@ -237,10 +237,6 @@ proxy-groups:
       - 美国02|1x
       - 美国03|1x
       - 美国04|1x
-      - 台湾01|1x
-      - 台湾02|1x
-      - 台湾03|1x
-      - 台湾04|1x
       - 韩国01|1x
       - 韩国02|1x
       - 韩国03|1x
@@ -256,7 +252,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   - name: GPT_AUTO
-    type: fallback
+    type: select
     proxies:
       - 西雅图Trojan-Go节点
       - 美国01|1x
@@ -267,8 +263,9 @@ proxy-groups:
     url: http://cp.cloudflare.com/generate_204
     interval: 300
   - name: gux_AUTO
-    type: url-test
+    type: select
     proxies:
+      - 西雅图Trojan-Go节点    
       - 美国01|1x
       - 美国02|1x
       - 美国03|1x
