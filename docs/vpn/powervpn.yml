@@ -382,5 +382,22 @@ rules:
   - IP-CIDR6,2001:b28:f23d::/48,🚀 Proxy,no-resolve
   - IP-CIDR6,2001:b28:f23f::/48,🚀 Proxy,no-resolve
 
+  # === rules for gemini ===
+  - DOMAIN-SUFFIX,gemini.google.com,GPT_AUTO
+  - DOMAIN-SUFFIX,generativelanguage.googleapis.com,GPT_AUTO
+  - DOMAIN-SUFFIX,cloud-aicompanion.googleapis.com,GPT_AUTO
+  - DOMAIN-SUFFIX,gemini-api.google.com,GPT_AUTO
+  - DOMAIN-SUFFIX,gemini-pro.google.com,GPT_AUTO
+  - DOMAIN-SUFFIX,android.googleapis.com,GPT_AUTO
+  - DOMAIN-SUFFIX,android.apis.google.com,GPT_AUTO
+  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com,GPT_AUTO
+  - DOMAIN-SUFFIX,firebaseblogging.googleapis.com,GPT_AUTO
+  - DOMAIN-SUFFIX,mtalk.google.com,GPT_AUTO
+  - DOMAIN-SUFFIX,googleapis.com,GPT_AUTO
+  - DOMAIN-SUFFIX,gstatic.com,GPT_AUTO
+  - DOMAIN-SUFFIX,google.com,GPT_AUTO
+  - DOMAIN-SUFFIX,googleusercontent.com,GPT_AUTO
+
   # Final fallback
   - MATCH,🚀 Proxy
+
