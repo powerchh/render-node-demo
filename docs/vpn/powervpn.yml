@@ -1,396 +1,396 @@
-allow-lan: true
-dns:
-  enable: true
-  ipv6: false
-  use-hosts: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-
-  nameserver:
-    - 223.5.5.5  # 阿里 DNS（适合国内直连）
-    - 119.29.29.29  # 腾讯 DNS
-
-  fallback:
-    - tls://1.1.1.1:853
-    - tls://8.8.8.8:853
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
-
-  proxy-server-nameserver:
-    - 8.8.8.8
-
-  fallback-auto: true
-
-  fallback-filter:
-    geoip: true
-    ipcidr:
-      - 240.0.0.0/4
-
-  fake-ip-filter:
-    - '*.lan'
-    - 'localhost'
-    - '*.local'
-    - 'time.*'
-    - 'ntp.*'
-    - '*.ntp.org'
-    - 'stun.*'
-    - 'stun.*.*'
-    - '*.stun.*'
-    - '*.stun.*.*'
-    - 'dns.google'
-    - 'www.gstatic.com'
-
-mixed-port: 9981
-mode: rule
-# 所有的代理节点
-proxies:
-
-  - name: "西雅图Trojan-Go节点"
-    type: trojan
-    server: vpn.unifine.top  # 你的SNI域名
-    port: 443
-    password: "YourStrongPassword"  # 和服务器一致
-    sni: "vpn.unifine.top"  # 必须和服务器一致
-    skip-cert-verify: true  # 生产环境建议保持false
-    network: ws
-    ws-opts:
-      path: "/ws"
-      headers:
-        Host: "vpn.unifine.top"
-
-
-  - { name: '香港-S1', type: ss, server: zl.sx1.pw, port: 37730, cipher: 2022-blake3-aes-256-gcm, password: 'MjBlMGY5Mjc1YTFlYWMzZmIwODJjNWQwNGUxOTk0ZWY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '香港-S2', type: ss, server: zl.sx1.pw, port: 37730, cipher: 2022-blake3-aes-256-gcm, password: 'MjBlMGY5Mjc1YTFlYWMzZmIwODJjNWQwNGUxOTk0ZWY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '香港-S3', type: ss, server: zl.sx1.pw, port: 24694, cipher: 2022-blake3-aes-256-gcm, password: 'MjBlMGY5Mjc1YTFlYWMzZmIwODJjNWQwNGUxOTk0ZWY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '香港-S4', type: ss, server: zl.sx1.pw, port: 24694, cipher: 2022-blake3-aes-256-gcm, password: 'MjBlMGY5Mjc1YTFlYWMzZmIwODJjNWQwNGUxOTk0ZWY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '台湾-S1', type: ss, server: zl.sx1.pw, port: 27095, cipher: 2022-blake3-aes-256-gcm, password: 'OTQxNDg5NjdkNDE4YjEwMDg0Yjk5ODI3ZmIzYTY5OGI=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '台湾-S2', type: ss, server: zl.sx1.pw, port: 27095, cipher: 2022-blake3-aes-256-gcm, password: 'OTQxNDg5NjdkNDE4YjEwMDg0Yjk5ODI3ZmIzYTY5OGI=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '日本-S1', type: ss, server: ml.sx1.pw, port: 34916, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '日本-S2', type: ss, server: ml.sx1.pw, port: 34916, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '日本-S3', type: ss, server: ml.sx1.pw, port: 34177, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '日本-S4', type: ss, server: ml.sx1.pw, port: 34177, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '新加坡-S1', type: ss, server: zl.sx1.pw, port: 22111, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '新加坡-S2', type: ss, server: zl.sx1.pw, port: 22111, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '新加坡-S3', type: ss, server: ml.sx1.pw, port: 47911, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '新加坡-S4', type: ss, server: ml.sx1.pw, port: 47911, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '美国-S1', type: ss, server: ml.sx1.pw, port: 40115, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '美国-S2', type: ss, server: ml.sx1.pw, port: 40115, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '美国-S3', type: ss, server: ml.sx1.pw, port: 32004, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '美国-S4', type: ss, server: ml.sx1.pw, port: 32004, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '柬埔寨-S1', type: ss, server: zl.sx1.pw, port: 49849, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '柬埔寨-S2', type: ss, server: zl.sx1.pw, port: 49849, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '越南-S1', type: ss, server: zl.sx1.pw, port: 41584, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '越南-S2', type: ss, server: zl.sx1.pw, port: 41584, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '印度尼西亚-S1', type: ss, server: ml.sx1.pw, port: 44057, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '印度尼西亚-S2', type: ss, server: ml.sx1.pw, port: 44057, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '英国-S1', type: ss, server: ml.sx1.pw, port: 28349, cipher: 2022-blake3-aes-256-gcm, password: 'NWViMThlZjg5ODNjOTFhZTg3YTMxMmM2NDU5NmRhYzc=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '英国-S2', type: ss, server: ml.sx1.pw, port: 28349, cipher: 2022-blake3-aes-256-gcm, password: 'NWViMThlZjg5ODNjOTFhZTg3YTMxMmM2NDU5NmRhYzc=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '德国-S1', type: ss, server: ml.sx1.pw, port: 19719, cipher: 2022-blake3-aes-256-gcm, password: 'NWViMThlZjg5ODNjOTFhZTg3YTMxMmM2NDU5NmRhYzc=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '德国-S2', type: ss, server: ml.sx1.pw, port: 19719, cipher: 2022-blake3-aes-256-gcm, password: 'NWViMThlZjg5ODNjOTFhZTg3YTMxMmM2NDU5NmRhYzc=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
-  - { name: '香港直连', type: anytls, server: 8.218.102.224, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
-  - { name: '台湾直连', type: anytls, server: tw2.kalocci.com, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
-  - { name: '日本直连', type: anytls, server: 8.211.163.36, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
-  - { name: '新加坡直连', type: anytls, server: 47.236.161.105, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
-  - { name: '美国直连', type: anytls, server: 107.175.155.229, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
-  # 移除了订阅信息节点，因为它们不作为可用的代理
-  # 移除了TG频道节点，因为它不作为可用的代理
-
-# ---
-
-proxy-groups:
-  # 主选择器，用于在不同地域分组之间切换
-  - name: '🚀 节点选择'
-    type: select
-    proxies:
-      - '🚀 Proxy'   
-      - 'gux_AUTO'
-      - 'GPT_AUTO'
-      - 'DIRECT'
-
-  # 全部
-  - name: '🚀 Proxy'
-    type: select
-    proxies:  
-      - '西雅图Trojan-Go节点'
-      - '香港-S1'
-      - '香港-S2'
-      - '香港-S3'
-      - '香港-S4'
-      - '台湾-S1'
-      - '台湾-S2'
-      - '日本-S1'
-      - '日本-S2'
-      - '日本-S3'
-      - '日本-S4'
-      - '新加坡-S1'
-      - '新加坡-S2'
-      - '新加坡-S3'
-      - '新加坡-S4'
-      - '柬埔寨-S1'
-      - '柬埔寨-S2'
-      - '越南-S1'
-      - '越南-S2'
-      - '印度尼西亚-S1'
-      - '印度尼西亚-S2'
-      - '香港直连'
-      - '台湾直连'
-      - '日本直连'
-      - '新加坡直连'
-      - '美国-S1'
-      - '美国-S2'
-      - '美国-S3'
-      - '美国-S4'
-      - '英国-S1'
-      - '英国-S2'
-      - '德国-S1'
-      - '德国-S2'
-      - '美国直连'
-
-  # 自动选择延迟最低的亚洲节点
-  - name: 'gux_AUTO'
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    proxies:
-      - '香港-S1'
-      - '香港-S2'
-      - '香港-S3'
-      - '香港-S4'
-      - '台湾-S1'
-      - '台湾-S2'
-      - '日本-S1'
-      - '日本-S2'
-      - '日本-S3'
-      - '日本-S4'
-      - '新加坡-S1'
-      - '新加坡-S2'
-      - '新加坡-S3'
-      - '新加坡-S4'
-      - '柬埔寨-S1'
-      - '柬埔寨-S2'
-      - '越南-S1'
-      - '越南-S2'
-      - '印度尼西亚-S1'
-      - '印度尼西亚-S2'
-      - '香港直连'
-      - '台湾直连'
-      - '日本直连'
-      - '新加坡直连'
-
-  # 自动选择延迟最低的欧洲美洲节点
-  - name: 'GPT_AUTO'
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    proxies:
-      - '西雅图Trojan-Go节点'
-      - '美国-S1'
-      - '美国-S2'
-      - '美国-S3'
-      - '美国-S4'
-      - '英国-S1'
-      - '英国-S2'
-      - '德国-S1'
-      - '德国-S2'
-      - '美国直连'
-      - '日本-S1'
-      - '日本-S2'
-      - '日本-S3'
-      - '日本-S4'
-
-# ---
-
-rules:
-  # === 广告拦截规则（优先处理）===
-  # 将广告拦截规则放在最前面，确保任何广告域名都被优先拦截，避免误伤
-  - DOMAIN-KEYWORD,admarvel,REJECT
-  - DOMAIN-KEYWORD,admaster,REJECT
-  - DOMAIN-KEYWORD,adsage,REJECT
-  - DOMAIN-KEYWORD,adsmogo,REJECT
-  - DOMAIN-KEYWORD,adsrvmedia,REJECT
-  - DOMAIN-KEYWORD,adwords,REJECT
-  - DOMAIN-KEYWORD,adservice,REJECT
-  - DOMAIN-SUFFIX,appsflyer.com,REJECT
-  - DOMAIN-KEYWORD,domob,REJECT
-  - DOMAIN-SUFFIX,doubleclick.net,REJECT
-  - DOMAIN-SUFFIX,mmstat.com,REJECT
-
-  # === 本地网络与直连（优先处理）===
-  # 本地网络、保留地址和国内 IP/域名直连，确保不会走代理
-  - DOMAIN-SUFFIX,local,DIRECT
-  - DOMAIN,injections.adguard.org,DIRECT
-  - DOMAIN,local.adguard.org,DIRECT
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,100.64.0.0/10,DIRECT
-  - DOMAIN-SUFFIX,cn,DIRECT
-  - GEOIP,CN,DIRECT
-  - DOMAIN-KEYWORD,-cn,DIRECT
-
-  # === 中国大陆直连服务（特定域名）===
-  # 修正 Bilibili 规则冲突：将更具体的代理规则放在直连规则之前
-  - DOMAIN-KEYWORD,bilibili,🚀 Proxy # 将此规则移到前面
-  - DOMAIN-SUFFIX,baidu.com,DIRECT
-  - DOMAIN-SUFFIX,qq.com,DIRECT
-  - DOMAIN-SUFFIX,wechat.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba.com,DIRECT
-  - DOMAIN-SUFFIX,taobao.com,DIRECT
-  - DOMAIN-KEYWORD,taobao,DIRECT
-  - DOMAIN-KEYWORD,alicdn,DIRECT
-  - DOMAIN-KEYWORD,alipay,DIRECT
-  - DOMAIN-SUFFIX,bilibili.com,DIRECT
-  
-  # === Apple Services (直连优先) ===
-  # 将需要直连的 Apple 规则放在需要代理的规则之前，避免冲突
-  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
-  - DOMAIN-SUFFIX,icloud.com,DIRECT
-  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
-  - DOMAIN-SUFFIX,me.com,DIRECT
-  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
-  - DOMAIN-SUFFIX,cdn20.com,DIRECT
-  - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
-  - DOMAIN-SUFFIX,akadns.net,DIRECT
-  - DOMAIN-SUFFIX,akamaiedge.net,DIRECT
-  - DOMAIN-SUFFIX,edgekey.net,DIRECT
-  - DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT
-  - DOMAIN-SUFFIX,mwcname.com,DIRECT
-  - DOMAIN-SUFFIX,apple.com,DIRECT
-  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
-  - DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
-  
-  - DOMAIN,developer.apple.com,🚀 Proxy
-  - DOMAIN-SUFFIX,digicert.com,🚀 Proxy
-  - DOMAIN,ocsp.apple.com,🚀 Proxy
-  - DOMAIN,ocsp.comodoca.com,🚀 Proxy
-  - DOMAIN,ocsp.usertrust.com,🚀 Proxy
-  - DOMAIN,ocsp.sectigo.com,🚀 Proxy
-  - DOMAIN,ocsp.verisign.net,🚀 Proxy
-  - DOMAIN-SUFFIX,apple-dns.net,🚀 Proxy
-  - DOMAIN,testflight.apple.com,🚀 Proxy
-  - DOMAIN,sandbox.itunes.apple.com,🚀 Proxy
-  - DOMAIN,itunes.apple.com,🚀 Proxy
-  - DOMAIN-SUFFIX,apps.apple.com,🚀 Proxy
-  - DOMAIN-SUFFIX,blobstore.apple.com,🚀 Proxy
-  - DOMAIN,cvws.icloud-content.com,🚀 Proxy
-
-  # === OpenAI/ChatGPT ===
-  - DOMAIN-SUFFIX,openai.com,GPT_AUTO
-  - DOMAIN-SUFFIX,chat.openai.com,GPT_AUTO
-  - DOMAIN-SUFFIX,chatgpt.com,GPT_AUTO
-  - DOMAIN-SUFFIX,oaistatic.com,GPT_AUTO
-  - DOMAIN-KEYWORD,openai,GPT_AUTO
-  - DOMAIN-KEYWORD,gpt,GPT_AUTO
-  - DOMAIN-SUFFIX,auth0.com,GPT_AUTO
-  - DOMAIN-SUFFIX,sentry.io,GPT_AUTO
-  - DOMAIN-SUFFIX,cloudmessaging.edge.microsoft.com,GPT_AUTO
-
-  # === Microsoft/Bing ===
-  - DOMAIN-SUFFIX,bing.net,🚀 Proxy
-  - DOMAIN-SUFFIX,bing.com,GPT_AUTO
-  - DOMAIN-SUFFIX,aria.microsoft.com,GPT_AUTO
-  - DOMAIN-SUFFIX,copilot.com,GPT_AUTO
-  - DOMAIN-SUFFIX,go.com,GPT_AUTO
-  - DOMAIN-SUFFIX,bingapis.com,GPT_AUTO
-
-  # === Google/Youtube ===
-  - DOMAIN-SUFFIX,gvt2.com,gux_AUTO
-  - DOMAIN-SUFFIX,gstatic.com,gux_AUTO
-  - DOMAIN-SUFFIX,ytimg.com,gux_AUTO
-  
-  # === Twitter/X ===
-  - DOMAIN-SUFFIX,x.com,gux_AUTO
-  - DOMAIN-SUFFIX,t.co,gux_AUTO
-  - DOMAIN-SUFFIX,ads-twitter.com,gux_AUTO
-  - DOMAIN-SUFFIX,twimg.com,gux_AUTO
-  - DOMAIN-SUFFIX,pscp.tv,gux_AUTO
-  - DOMAIN-SUFFIX,twtrdns.net,gux_AUTO
-  - DOMAIN-SUFFIX,twttr.com,gux_AUTO
-  - DOMAIN-SUFFIX,periscope.tv,gux_AUTO
-  - DOMAIN-SUFFIX,tweetdeck.com,gux_AUTO
-  - DOMAIN-SUFFIX,twitpic.com,gux_AUTO
-  - DOMAIN-SUFFIX,twitter.co,gux_AUTO
-  - DOMAIN-SUFFIX,twitterinc.com,gux_AUTO
-  - DOMAIN-SUFFIX,twitteroauth.com,gux_AUTO
-  - DOMAIN-SUFFIX,twitterstat.us,gux_AUTO
-  - DOMAIN-SUFFIX,pbs.twimg.com,gux_AUTO
-  - DOMAIN-SUFFIX,video.twimg.com,gux_AUTO
-  - DOMAIN-SUFFIX,media.x.com,gux_AUTO
-  - DOMAIN-SUFFIX,twitter.com,gux_AUTO
-  - DOMAIN-SUFFIX,api.x.com,gux_AUTO
-  - DOMAIN-SUFFIX,api.periscope.tv,gux_AUTO
-  - DOMAIN-SUFFIX,api.tweetdeck.com,gux_AUTO
-  - DOMAIN-SUFFIX,twttr.net,gux_AUTO
-  - DOMAIN-SUFFIX,abs.twimg.com,gux_AUTO
-
-  # === Streaming Services ===
-  - DOMAIN-SUFFIX,netflix.com,🚀 Proxy
-  - DOMAIN-SUFFIX,twitch.tv,🚀 Proxy
-
-  # === Social Media ===
-  - DOMAIN-SUFFIX,facebook.com,🚀 Proxy
-  - DOMAIN-SUFFIX,fb.me,🚀 Proxy
-  - DOMAIN-SUFFIX,fbcdn.net,🚀 Proxy
-  - DOMAIN-SUFFIX,instagram.com,🚀 Proxy
-
-  # === News ===
-  - DOMAIN-SUFFIX,bbc.com,🚀 Proxy
-  - DOMAIN-SUFFIX,nytimes.com,🚀 Proxy
-  
-  # === CDNs ===
-  - DOMAIN-SUFFIX,ampproject.org,🚀 Proxy
-  - DOMAIN-SUFFIX,akamaized.net,🚀 Proxy
-  - DOMAIN-SUFFIX,cloudfront.net,🚀 Proxy
-  - DOMAIN-SUFFIX,edgecastcdn.net,🚀 Proxy
-  - DOMAIN-SUFFIX,edgesuite.net,🚀 Proxy
-  
-  # === Common Global Services ===
-  - DOMAIN-SUFFIX,adobe.com,🚀 Proxy
-  - DOMAIN-SUFFIX,dropbox.com,🚀 Proxy
-  - DOMAIN-SUFFIX,whatsapp.com,🚀 Proxy
-  - DOMAIN-SUFFIX,telegram.org,🚀 Proxy
-  - DOMAIN-SUFFIX,telegra.ph,🚀 Proxy
-  - DOMAIN-SUFFIX,archive.org,🚀 Proxy
-  - DOMAIN-SUFFIX,wikimedia.org,🚀 Proxy
-  - DOMAIN-SUFFIX,wikipedia.org,🚀 Proxy
-
-  # === Telegram IPs ===
-  - IP-CIDR,91.108.4.0/22,🚀 Proxy,no-resolve
-  - IP-CIDR,91.108.8.0/21,🚀 Proxy,no-resolve
-  - IP-CIDR,91.108.16.0/22,🚀 Proxy,no-resolve
-  - IP-CIDR,91.108.56.0/22,🚀 Proxy,no-resolve
-  - IP-CIDR,149.154.160.0/20,🚀 Proxy,no-resolve
-  - IP-CIDR6,2001:67c:4e8::/48,🚀 Proxy,no-resolve
-  - IP-CIDR6,2001:b28:f23d::/48,🚀 Proxy,no-resolve
-  - IP-CIDR6,2001:b28:f23f::/48,🚀 Proxy,no-resolve
-
-  # === Gmail & Gemini (Specific Rules) ===
-  - DOMAIN,imap.gmail.com,GPT_AUTO
-  - DOMAIN,smtp.gmail.com,GPT_AUTO
-  - DOMAIN,mail.google.com,GPT_AUTO
-  - DOMAIN,pop.gmail.com,GPT_AUTO
-  - DOMAIN-SUFFIX,gemini.google.com,GPT_AUTO
-  - DOMAIN-SUFFIX,generativelanguage.googleapis.com,GPT_AUTO
-  - DOMAIN-SUFFIX,cloud-aicompanion.googleapis.com,GPT_AUTO
-  - DOMAIN-SUFFIX,gemini-api.google.com,GPT_AUTO
-  - DOMAIN-SUFFIX,gemini-pro.google.com,GPT_AUTO
-  - DOMAIN-SUFFIX,googleapis.com,GPT_AUTO  # 如果这个是特殊需求，放在前面
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,GPT_AUTO
-
-  # === Google Services (Catch-all Rules for GPT_AUTO) ===
-  - DOMAIN-SUFFIX,gmail.com,GPT_AUTO
-  - DOMAIN-SUFFIX,googleusercontent.com,GPT_AUTO
-  - DOMAIN-SUFFIX,googlevideo.com,GPT_AUTO
-  - DOMAIN-SUFFIX,googleapis.com,GPT_AUTO
-  - IP-CIDR,74.125.0.0/16,GPT_AUTO
-  - IP-CIDR,216.58.192.0/19,GPT_AUTO
-
-  # === General Google Rules (gux_AUTO as a catch-all) ===
-  - DOMAIN-SUFFIX,google.com,gux_AUTO
-  - DOMAIN-KEYWORD,google,gux_AUTO
-
-
-  # Final fallback
-  - MATCH,🚀 Proxy
-
+	allow-lan: true
+	dns:
+	  enable: true
+	  ipv6: false
+	  use-hosts: false
+	  enhanced-mode: fake-ip
+	  fake-ip-range: 198.18.0.1/16
+	
+	  nameserver:
+	    - 223.5.5.5  # 阿里 DNS（适合国内直连）
+	    - 119.29.29.29  # 腾讯 DNS
+	
+	  fallback:
+	    - tls://1.1.1.1:853
+	    - tls://8.8.8.8:853
+	    - https://dns.cloudflare.com/dns-query
+	    - https://dns.google/dns-query
+	
+	  proxy-server-nameserver:
+	    - 8.8.8.8
+	
+	  fallback-auto: true
+	
+	  fallback-filter:
+	    geoip: true
+	    ipcidr:
+	      - 240.0.0.0/4
+	
+	  fake-ip-filter:
+	    - '*.lan'
+	    - 'localhost'
+	    - '*.local'
+	    - 'time.*'
+	    - 'ntp.*'
+	    - '*.ntp.org'
+	    - 'stun.*'
+	    - 'stun.*.*'
+	    - '*.stun.*'
+	    - '*.stun.*.*'
+	    - 'dns.google'
+	    - 'www.gstatic.com'
+	
+	mixed-port: 9981
+	mode: rule
+	# 所有的代理节点
+	proxies:
+	
+	  - name: "西雅图Trojan-Go节点"
+	    type: trojan
+	    server: vpn.unifine.top  # 你的SNI域名
+	    port: 443
+	    password: "YourStrongPassword"  # 和服务器一致
+	    sni: "vpn.unifine.top"  # 必须和服务器一致
+	    skip-cert-verify: true  # 生产环境建议保持false
+	    network: ws
+	    ws-opts:
+	      path: "/ws"
+	      headers:
+	        Host: "vpn.unifine.top"
+	
+	
+	  - { name: '香港-S1', type: ss, server: zl.sx1.pw, port: 37730, cipher: 2022-blake3-aes-256-gcm, password: 'MjBlMGY5Mjc1YTFlYWMzZmIwODJjNWQwNGUxOTk0ZWY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '香港-S2', type: ss, server: zl.sx1.pw, port: 37730, cipher: 2022-blake3-aes-256-gcm, password: 'MjBlMGY5Mjc1YTFlYWMzZmIwODJjNWQwNGUxOTk0ZWY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '香港-S3', type: ss, server: zl.sx1.pw, port: 24694, cipher: 2022-blake3-aes-256-gcm, password: 'MjBlMGY5Mjc1YTFlYWMzZmIwODJjNWQwNGUxOTk0ZWY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '香港-S4', type: ss, server: zl.sx1.pw, port: 24694, cipher: 2022-blake3-aes-256-gcm, password: 'MjBlMGY5Mjc1YTFlYWMzZmIwODJjNWQwNGUxOTk0ZWY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '台湾-S1', type: ss, server: zl.sx1.pw, port: 27095, cipher: 2022-blake3-aes-256-gcm, password: 'OTQxNDg5NjdkNDE4YjEwMDg0Yjk5ODI3ZmIzYTY5OGI=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '台湾-S2', type: ss, server: zl.sx1.pw, port: 27095, cipher: 2022-blake3-aes-256-gcm, password: 'OTQxNDg5NjdkNDE4YjEwMDg0Yjk5ODI3ZmIzYTY5OGI=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '日本-S1', type: ss, server: ml.sx1.pw, port: 34916, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '日本-S2', type: ss, server: ml.sx1.pw, port: 34916, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '日本-S3', type: ss, server: ml.sx1.pw, port: 34177, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '日本-S4', type: ss, server: ml.sx1.pw, port: 34177, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '新加坡-S1', type: ss, server: zl.sx1.pw, port: 22111, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '新加坡-S2', type: ss, server: zl.sx1.pw, port: 22111, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '新加坡-S3', type: ss, server: ml.sx1.pw, port: 47911, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '新加坡-S4', type: ss, server: ml.sx1.pw, port: 47911, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '美国-S1', type: ss, server: ml.sx1.pw, port: 40115, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '美国-S2', type: ss, server: ml.sx1.pw, port: 40115, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '美国-S3', type: ss, server: ml.sx1.pw, port: 32004, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '美国-S4', type: ss, server: ml.sx1.pw, port: 32004, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '柬埔寨-S1', type: ss, server: zl.sx1.pw, port: 49849, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '柬埔寨-S2', type: ss, server: zl.sx1.pw, port: 49849, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '越南-S1', type: ss, server: zl.sx1.pw, port: 41584, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '越南-S2', type: ss, server: zl.sx1.pw, port: 41584, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '印度尼西亚-S1', type: ss, server: ml.sx1.pw, port: 44057, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '印度尼西亚-S2', type: ss, server: ml.sx1.pw, port: 44057, cipher: 2022-blake3-aes-256-gcm, password: 'Njc2YjNkYjJiODhmNDIzMDgwNGEyYTRlNjI0N2QzNjY=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '英国-S1', type: ss, server: ml.sx1.pw, port: 28349, cipher: 2022-blake3-aes-256-gcm, password: 'NWViMThlZjg5ODNjOTFhZTg3YTMxMmM2NDU5NmRhYzc=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '英国-S2', type: ss, server: ml.sx1.pw, port: 28349, cipher: 2022-blake3-aes-256-gcm, password: 'NWViMThlZjg5ODNjOTFhZTg3YTMxMmM2NDU5NmRhYzc=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '德国-S1', type: ss, server: ml.sx1.pw, port: 19719, cipher: 2022-blake3-aes-256-gcm, password: 'NWViMThlZjg5ODNjOTFhZTg3YTMxMmM2NDU5NmRhYzc=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '德国-S2', type: ss, server: ml.sx1.pw, port: 19719, cipher: 2022-blake3-aes-256-gcm, password: 'NWViMThlZjg5ODNjOTFhZTg3YTMxMmM2NDU5NmRhYzc=:ZjFjNTg3NzMtNTZjMC00MTA5LTkwOGYtN2E3YjIyYWE=', udp: true }
+	  - { name: '香港直连', type: anytls, server: 8.218.102.224, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
+	  - { name: '台湾直连', type: anytls, server: tw2.kalocci.com, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
+	  - { name: '日本直连', type: anytls, server: 8.211.163.36, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
+	  - { name: '新加坡直连', type: anytls, server: 47.236.161.105, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
+	  - { name: '美国直连', type: anytls, server: 107.175.155.229, port: 35148, password: f1c58773-56c0-4109-908f-7a7b22aa1452, udp: true, sni: v1-dy.ixigua.com, skip-cert-verify: true }
+	  # 移除了订阅信息节点，因为它们不作为可用的代理
+	  # 移除了TG频道节点，因为它不作为可用的代理
+	
+	# ---
+	
+	proxy-groups:
+	  # 主选择器，用于在不同地域分组之间切换
+	  - name: '🚀 节点选择'
+	    type: select
+	    proxies:
+	      - '🚀 Proxy'   
+	      - 'gux_AUTO'
+	      - 'GPT_AUTO'
+	      - 'DIRECT'
+	
+	  # 全部
+	  - name: '🚀 Proxy'
+	    type: select
+	    proxies:  
+	      - '西雅图Trojan-Go节点'
+	      - '香港-S1'
+	      - '香港-S2'
+	      - '香港-S3'
+	      - '香港-S4'
+	      - '台湾-S1'
+	      - '台湾-S2'
+	      - '日本-S1'
+	      - '日本-S2'
+	      - '日本-S3'
+	      - '日本-S4'
+	      - '新加坡-S1'
+	      - '新加坡-S2'
+	      - '新加坡-S3'
+	      - '新加坡-S4'
+	      - '柬埔寨-S1'
+	      - '柬埔寨-S2'
+	      - '越南-S1'
+	      - '越南-S2'
+	      - '印度尼西亚-S1'
+	      - '印度尼西亚-S2'
+	      - '香港直连'
+	      - '台湾直连'
+	      - '日本直连'
+	      - '新加坡直连'
+	      - '美国-S1'
+	      - '美国-S2'
+	      - '美国-S3'
+	      - '美国-S4'
+	      - '英国-S1'
+	      - '英国-S2'
+	      - '德国-S1'
+	      - '德国-S2'
+	      - '美国直连'
+	
+	  # 自动选择延迟最低的亚洲节点
+	  - name: 'gux_AUTO'
+	    type: url-test
+	    url: http://www.gstatic.com/generate_204
+	    interval: 300
+	    proxies:
+	      - '香港-S1'
+	      - '香港-S2'
+	      - '香港-S3'
+	      - '香港-S4'
+	      - '台湾-S1'
+	      - '台湾-S2'
+	      - '日本-S1'
+	      - '日本-S2'
+	      - '日本-S3'
+	      - '日本-S4'
+	      - '新加坡-S1'
+	      - '新加坡-S2'
+	      - '新加坡-S3'
+	      - '新加坡-S4'
+	      - '柬埔寨-S1'
+	      - '柬埔寨-S2'
+	      - '越南-S1'
+	      - '越南-S2'
+	      - '印度尼西亚-S1'
+	      - '印度尼西亚-S2'
+	      - '香港直连'
+	      - '台湾直连'
+	      - '日本直连'
+	      - '新加坡直连'
+	
+	  # 自动选择延迟最低的欧洲美洲节点
+	  - name: 'GPT_AUTO'
+	    type: url-test
+	    url: http://www.gstatic.com/generate_204
+	    interval: 300
+	    proxies:
+	      - '西雅图Trojan-Go节点'
+	      - '美国-S1'
+	      - '美国-S2'
+	      - '美国-S3'
+	      - '美国-S4'
+	      - '英国-S1'
+	      - '英国-S2'
+	      - '德国-S1'
+	      - '德国-S2'
+	      - '美国直连'
+	      - '日本-S1'
+	      - '日本-S2'
+	      - '日本-S3'
+	      - '日本-S4'
+	
+	# ---
+	
+	rules:
+	  # === 广告拦截规则（优先处理）===
+	  # 将广告拦截规则放在最前面，确保任何广告域名都被优先拦截，避免误伤
+	  - DOMAIN-KEYWORD,admarvel,REJECT
+	  - DOMAIN-KEYWORD,admaster,REJECT
+	  - DOMAIN-KEYWORD,adsage,REJECT
+	  - DOMAIN-KEYWORD,adsmogo,REJECT
+	  - DOMAIN-KEYWORD,adsrvmedia,REJECT
+	  - DOMAIN-KEYWORD,adwords,REJECT
+	  - DOMAIN-KEYWORD,adservice,REJECT
+	  - DOMAIN-SUFFIX,appsflyer.com,REJECT
+	  - DOMAIN-KEYWORD,domob,REJECT
+	  - DOMAIN-SUFFIX,doubleclick.net,REJECT
+	  - DOMAIN-SUFFIX,mmstat.com,REJECT
+	
+	  # === 本地网络与直连（优先处理）===
+	  # 本地网络、保留地址和国内 IP/域名直连，确保不会走代理
+	  - DOMAIN-SUFFIX,local,DIRECT
+	  - DOMAIN,injections.adguard.org,DIRECT
+	  - DOMAIN,local.adguard.org,DIRECT
+	  - IP-CIDR,127.0.0.0/8,DIRECT
+	  - IP-CIDR,172.16.0.0/12,DIRECT
+	  - IP-CIDR,192.168.0.0/16,DIRECT
+	  - IP-CIDR,10.0.0.0/8,DIRECT
+	  - IP-CIDR,100.64.0.0/10,DIRECT
+	  - DOMAIN-SUFFIX,cn,DIRECT
+	  - GEOIP,CN,DIRECT
+	  - DOMAIN-KEYWORD,-cn,DIRECT
+	
+	  # === 中国大陆直连服务（特定域名）===
+	  # 修正 Bilibili 规则冲突：将更具体的代理规则放在直连规则之前
+	  - DOMAIN-KEYWORD,bilibili,🚀 Proxy # 将此规则移到前面
+	  - DOMAIN-SUFFIX,baidu.com,DIRECT
+	  - DOMAIN-SUFFIX,qq.com,DIRECT
+	  - DOMAIN-SUFFIX,wechat.com,DIRECT
+	  - DOMAIN-SUFFIX,alibaba.com,DIRECT
+	  - DOMAIN-SUFFIX,taobao.com,DIRECT
+	  - DOMAIN-KEYWORD,taobao,DIRECT
+	  - DOMAIN-KEYWORD,alicdn,DIRECT
+	  - DOMAIN-KEYWORD,alipay,DIRECT
+	  - DOMAIN-SUFFIX,bilibili.com,DIRECT
+	  
+	  # === Apple Services (直连优先) ===
+	  # 将需要直连的 Apple 规则放在需要代理的规则之前，避免冲突
+	  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
+	  - DOMAIN-SUFFIX,icloud.com,DIRECT
+	  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
+	  - DOMAIN-SUFFIX,me.com,DIRECT
+	  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
+	  - DOMAIN-SUFFIX,cdn20.com,DIRECT
+	  - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
+	  - DOMAIN-SUFFIX,akadns.net,DIRECT
+	  - DOMAIN-SUFFIX,akamaiedge.net,DIRECT
+	  - DOMAIN-SUFFIX,edgekey.net,DIRECT
+	  - DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT
+	  - DOMAIN-SUFFIX,mwcname.com,DIRECT
+	  - DOMAIN-SUFFIX,apple.com,DIRECT
+	  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+	  - DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
+	  
+	  - DOMAIN,developer.apple.com,🚀 Proxy
+	  - DOMAIN-SUFFIX,digicert.com,🚀 Proxy
+	  - DOMAIN,ocsp.apple.com,🚀 Proxy
+	  - DOMAIN,ocsp.comodoca.com,🚀 Proxy
+	  - DOMAIN,ocsp.usertrust.com,🚀 Proxy
+	  - DOMAIN,ocsp.sectigo.com,🚀 Proxy
+	  - DOMAIN,ocsp.verisign.net,🚀 Proxy
+	  - DOMAIN-SUFFIX,apple-dns.net,🚀 Proxy
+	  - DOMAIN,testflight.apple.com,🚀 Proxy
+	  - DOMAIN,sandbox.itunes.apple.com,🚀 Proxy
+	  - DOMAIN,itunes.apple.com,🚀 Proxy
+	  - DOMAIN-SUFFIX,apps.apple.com,🚀 Proxy
+	  - DOMAIN-SUFFIX,blobstore.apple.com,🚀 Proxy
+	  - DOMAIN,cvws.icloud-content.com,🚀 Proxy
+	
+	  # === OpenAI/ChatGPT ===
+	  - DOMAIN-SUFFIX,openai.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,chat.openai.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,chatgpt.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,oaistatic.com,GPT_AUTO
+	  - DOMAIN-KEYWORD,openai,GPT_AUTO
+	  - DOMAIN-KEYWORD,gpt,GPT_AUTO
+	  - DOMAIN-SUFFIX,auth0.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,sentry.io,GPT_AUTO
+	  - DOMAIN-SUFFIX,cloudmessaging.edge.microsoft.com,GPT_AUTO
+	
+	  # === Microsoft/Bing ===
+	  - DOMAIN-SUFFIX,bing.net,🚀 Proxy
+	  - DOMAIN-SUFFIX,bing.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,aria.microsoft.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,copilot.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,go.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,bingapis.com,GPT_AUTO
+	
+	  # === Google/Youtube ===
+	  - DOMAIN-SUFFIX,gvt2.com,gux_AUTO
+	  - DOMAIN-SUFFIX,gstatic.com,gux_AUTO
+	  - DOMAIN-SUFFIX,ytimg.com,gux_AUTO
+	  
+	  # === Twitter/X ===
+	  - DOMAIN-SUFFIX,x.com,gux_AUTO
+	  - DOMAIN-SUFFIX,t.co,gux_AUTO
+	  - DOMAIN-SUFFIX,ads-twitter.com,gux_AUTO
+	  - DOMAIN-SUFFIX,twimg.com,gux_AUTO
+	  - DOMAIN-SUFFIX,pscp.tv,gux_AUTO
+	  - DOMAIN-SUFFIX,twtrdns.net,gux_AUTO
+	  - DOMAIN-SUFFIX,twttr.com,gux_AUTO
+	  - DOMAIN-SUFFIX,periscope.tv,gux_AUTO
+	  - DOMAIN-SUFFIX,tweetdeck.com,gux_AUTO
+	  - DOMAIN-SUFFIX,twitpic.com,gux_AUTO
+	  - DOMAIN-SUFFIX,twitter.co,gux_AUTO
+	  - DOMAIN-SUFFIX,twitterinc.com,gux_AUTO
+	  - DOMAIN-SUFFIX,twitteroauth.com,gux_AUTO
+	  - DOMAIN-SUFFIX,twitterstat.us,gux_AUTO
+	  - DOMAIN-SUFFIX,pbs.twimg.com,gux_AUTO
+	  - DOMAIN-SUFFIX,video.twimg.com,gux_AUTO
+	  - DOMAIN-SUFFIX,media.x.com,gux_AUTO
+	  - DOMAIN-SUFFIX,twitter.com,gux_AUTO
+	  - DOMAIN-SUFFIX,api.x.com,gux_AUTO
+	  - DOMAIN-SUFFIX,api.periscope.tv,gux_AUTO
+	  - DOMAIN-SUFFIX,api.tweetdeck.com,gux_AUTO
+	  - DOMAIN-SUFFIX,twttr.net,gux_AUTO
+	  - DOMAIN-SUFFIX,abs.twimg.com,gux_AUTO
+	
+	  # === Streaming Services ===
+	  - DOMAIN-SUFFIX,netflix.com,🚀 Proxy
+	  - DOMAIN-SUFFIX,twitch.tv,🚀 Proxy
+	
+	  # === Social Media ===
+	  - DOMAIN-SUFFIX,facebook.com,🚀 Proxy
+	  - DOMAIN-SUFFIX,fb.me,🚀 Proxy
+	  - DOMAIN-SUFFIX,fbcdn.net,🚀 Proxy
+	  - DOMAIN-SUFFIX,instagram.com,🚀 Proxy
+	
+	  # === News ===
+	  - DOMAIN-SUFFIX,bbc.com,🚀 Proxy
+	  - DOMAIN-SUFFIX,nytimes.com,🚀 Proxy
+	  
+	  # === CDNs ===
+	  - DOMAIN-SUFFIX,ampproject.org,🚀 Proxy
+	  - DOMAIN-SUFFIX,akamaized.net,🚀 Proxy
+	  - DOMAIN-SUFFIX,cloudfront.net,🚀 Proxy
+	  - DOMAIN-SUFFIX,edgecastcdn.net,🚀 Proxy
+	  - DOMAIN-SUFFIX,edgesuite.net,🚀 Proxy
+	  
+	  # === Common Global Services ===
+	  - DOMAIN-SUFFIX,adobe.com,🚀 Proxy
+	  - DOMAIN-SUFFIX,dropbox.com,🚀 Proxy
+	  - DOMAIN-SUFFIX,whatsapp.com,🚀 Proxy
+	  - DOMAIN-SUFFIX,telegram.org,🚀 Proxy
+	  - DOMAIN-SUFFIX,telegra.ph,🚀 Proxy
+	  - DOMAIN-SUFFIX,archive.org,🚀 Proxy
+	  - DOMAIN-SUFFIX,wikimedia.org,🚀 Proxy
+	  - DOMAIN-SUFFIX,wikipedia.org,🚀 Proxy
+	
+	  # === Telegram IPs ===
+	  - IP-CIDR,91.108.4.0/22,🚀 Proxy,no-resolve
+	  - IP-CIDR,91.108.8.0/21,🚀 Proxy,no-resolve
+	  - IP-CIDR,91.108.16.0/22,🚀 Proxy,no-resolve
+	  - IP-CIDR,91.108.56.0/22,🚀 Proxy,no-resolve
+	  - IP-CIDR,149.154.160.0/20,🚀 Proxy,no-resolve
+	  - IP-CIDR6,2001:67c:4e8::/48,🚀 Proxy,no-resolve
+	  - IP-CIDR6,2001:b28:f23d::/48,🚀 Proxy,no-resolve
+	  - IP-CIDR6,2001:b28:f23f::/48,🚀 Proxy,no-resolve
+	
+	  # === Gmail & Gemini (Specific Rules) ===
+	  - DOMAIN,imap.gmail.com,GPT_AUTO
+	  - DOMAIN,smtp.gmail.com,GPT_AUTO
+	  - DOMAIN,mail.google.com,GPT_AUTO
+	  - DOMAIN,pop.gmail.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,gemini.google.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,generativelanguage.googleapis.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,cloud-aicompanion.googleapis.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,gemini-api.google.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,gemini-pro.google.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,googleapis.com,GPT_AUTO  # 如果这个是特殊需求，放在前面
+	  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,GPT_AUTO
+	
+	  # === Google Services (Catch-all Rules for GPT_AUTO) ===
+	  - DOMAIN-SUFFIX,gmail.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,googleusercontent.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,googlevideo.com,GPT_AUTO
+	  - DOMAIN-SUFFIX,googleapis.com,GPT_AUTO
+	  - IP-CIDR,74.125.0.0/16,GPT_AUTO
+	  - IP-CIDR,216.58.192.0/19,GPT_AUTO
+	
+	  # === General Google Rules (gux_AUTO as a catch-all) ===
+	  - DOMAIN-SUFFIX,google.com,GPT_AUTO
+	  - DOMAIN-KEYWORD,google,GPT_AUTO
+	
+	
+	  # Final fallback
+	  - MATCH,🚀 Proxy
+	
