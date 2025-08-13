@@ -298,23 +298,6 @@ rules:
   - DOMAIN-SUFFIX,gvt2.com,gux_AUTO
   - DOMAIN-SUFFIX,gstatic.com,gux_AUTO
   - DOMAIN-SUFFIX,ytimg.com,gux_AUTO
-  # 修正规则格式错误：DOMAIN-SUFFIX 不应包含 http://
-  - DOMAIN-SUFFIX,googleusercontent.com,gux_AUTO 
-  - DOMAIN-SUFFIX,googlevideo.com,gux_AUTO
-  - DOMAIN-SUFFIX,googleapis.com,gux_AUTO
-  - DOMAIN-SUFFIX,google.com,gux_AUTO
-  - DOMAIN-KEYWORD,google,gux_AUTO
-  - DOMAIN-SUFFIX,services.googleapis.cn,🚀 Proxy
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🚀 Proxy
-  
-  # === gmail ===
-  - DOMAIN-SUFFIX,gmail.com,GPT_AUTO
-  - DOMAIN,imap.gmail.com,GPT_AUTO
-  - DOMAIN,smtp.gmail.com,GPT_AUTO
-  - DOMAIN,mail.google.com,GPT_AUTO
-  - DOMAIN,pop.gmail.com,GPT_AUTO
-  - IP-CIDR,74.125.0.0/16,GPT_AUTO
-  - IP-CIDR,216.58.192.0/19,GPT_AUTO
   
   # === Twitter/X ===
   - DOMAIN-SUFFIX,x.com,gux_AUTO
@@ -382,21 +365,31 @@ rules:
   - IP-CIDR6,2001:b28:f23d::/48,🚀 Proxy,no-resolve
   - IP-CIDR6,2001:b28:f23f::/48,🚀 Proxy,no-resolve
 
-  # === rules for gemini ===
+  # === Gmail & Gemini (Specific Rules) ===
+  - DOMAIN,imap.gmail.com,GPT_AUTO
+  - DOMAIN,smtp.gmail.com,GPT_AUTO
+  - DOMAIN,mail.google.com,GPT_AUTO
+  - DOMAIN,pop.gmail.com,GPT_AUTO
   - DOMAIN-SUFFIX,gemini.google.com,GPT_AUTO
   - DOMAIN-SUFFIX,generativelanguage.googleapis.com,GPT_AUTO
   - DOMAIN-SUFFIX,cloud-aicompanion.googleapis.com,GPT_AUTO
   - DOMAIN-SUFFIX,gemini-api.google.com,GPT_AUTO
   - DOMAIN-SUFFIX,gemini-pro.google.com,GPT_AUTO
-  - DOMAIN-SUFFIX,android.googleapis.com,GPT_AUTO
-  - DOMAIN-SUFFIX,android.apis.google.com,GPT_AUTO
-  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com,GPT_AUTO
-  - DOMAIN-SUFFIX,firebaseblogging.googleapis.com,GPT_AUTO
-  - DOMAIN-SUFFIX,mtalk.google.com,GPT_AUTO
-  - DOMAIN-SUFFIX,googleapis.com,GPT_AUTO
-  - DOMAIN-SUFFIX,gstatic.com,GPT_AUTO
-  - DOMAIN-SUFFIX,google.com,GPT_AUTO
+  - DOMAIN-SUFFIX,googleapis.cn,com,GPT_AUTO  # 如果这个是特殊需求，放在前面
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,GPT_AUTO
+
+  # === Google Services (Catch-all Rules for GPT_AUTO) ===
+  - DOMAIN-SUFFIX,gmail.com,GPT_AUTO
   - DOMAIN-SUFFIX,googleusercontent.com,GPT_AUTO
+  - DOMAIN-SUFFIX,googlevideo.com,GPT_AUTO
+  - DOMAIN-SUFFIX,googleapis.com,GPT_AUTO
+  - IP-CIDR,74.125.0.0/16,GPT_AUTO
+  - IP-CIDR,216.58.192.0/19,GPT_AUTO
+
+  # === General Google Rules (gux_AUTO as a catch-all) ===
+  - DOMAIN-SUFFIX,google.com,gux_AUTO
+  - DOMAIN-KEYWORD,google,gux_AUTO
+
 
   # Final fallback
   - MATCH,🚀 Proxy
