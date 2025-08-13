@@ -375,7 +375,7 @@ rules:
   - DOMAIN-SUFFIX,cloud-aicompanion.googleapis.com,GPT_AUTO
   - DOMAIN-SUFFIX,gemini-api.google.com,GPT_AUTO
   - DOMAIN-SUFFIX,gemini-pro.google.com,GPT_AUTO
-  - DOMAIN-SUFFIX,googleapis.cn,com,GPT_AUTO  # 如果这个是特殊需求，放在前面
+  - DOMAIN-SUFFIX,googleapis.com,GPT_AUTO  # 如果这个是特殊需求，放在前面
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,GPT_AUTO
 
   # === Google Services (Catch-all Rules for GPT_AUTO) ===
