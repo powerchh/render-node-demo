@@ -101,6 +101,8 @@ proxy-groups:
 
   - name: '🚀 Proxy'
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
     proxies:  
       - '西雅图Trojan-Go节点'
       - '香港-S1'
