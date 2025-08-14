@@ -98,18 +98,9 @@ proxies:
 # ---
 
 proxy-groups:
-  # 主选择器，用于在不同地域分组之间切换
-  - name: '🚀 节点选择'
-    type: select
-    proxies:
-      - '🚀 Proxy'   
-      - 'gux_AUTO'
-      - 'GPT_AUTO'
-      - 'DIRECT'
 
-  # 全部
   - name: '🚀 Proxy'
-    type: select
+    type: url-test
     proxies:  
       - '西雅图Trojan-Go节点'
       - '香港-S1'
@@ -145,6 +136,7 @@ proxy-groups:
       - '德国-S1'
       - '德国-S2'
       - '美国直连'
+      - '🚀 手动节点'
 
   # 自动选择延迟最低的亚洲节点
   - name: 'gux_AUTO'
@@ -176,6 +168,7 @@ proxy-groups:
       - '台湾直连'
       - '日本直连'
       - '新加坡直连'
+      - '🚀 手动节点'
 
   # 自动选择延迟最低的欧洲美洲节点
   - name: 'GPT_AUTO'
@@ -199,6 +192,36 @@ proxy-groups:
       - '印度尼西亚-S2'
       - '柬埔寨-S1'
       - '柬埔寨-S2'
+      - '🚀 手动节点'
+
+  # 手动选择器，用于在不同地域分组之间切换
+  - name: '🚀 手动节点'
+    type: select
+    proxies:
+      - '西雅图Trojan-Go节点'
+      - '美国直连'
+      - '香港直连'
+      - '新加坡直连'
+      - '台湾直连'
+      - '日本直连'
+      - '香港-S1'
+      - '香港-S2'
+      - '香港-S3'
+      - '香港-S4'
+      - '新加坡-S1'
+      - '新加坡-S2'
+      - '新加坡-S3'
+      - '新加坡-S4'
+      - '柬埔寨-S1'
+      - '柬埔寨-S2'
+      - '美国-S1'
+      - '美国-S2'
+      - '美国-S3'
+      - '美国-S4'
+      - '英国-S1'
+      - '英国-S2'
+      - '德国-S1'
+      - '德国-S2'
 
 
 # ---
@@ -396,4 +419,3 @@ rules:
 
   # Final fallback
   - MATCH,🚀 Proxy
-
