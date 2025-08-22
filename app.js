@@ -56,7 +56,8 @@ app.get('/tvlist.txt', async (req, res) => {
       output += `${category},#genre#\n`;
       // 该分类下的频道行：set_name(ID),url
       channels.forEach(channel => {
-        output += `${channel.set_name},${channel.url}\n`;
+       // output += `${channel.set_name},${channel.url}\n`;
+        output += `(${channel.id}),${channel.url}\n`;
       });
     }
     
