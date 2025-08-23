@@ -255,6 +255,7 @@ proxies:
 proxy-groups:
 - name: Ghelper
   proxies:
+  - powerchh_F1
   - 🌐 全球智能
   - 🇺🇸 美国西雅图
   - 🇺🇸 美国西雅图2
@@ -292,6 +293,7 @@ proxy-groups:
 - interval: 7200
   name: 🌐 全球智能
   proxies:
+  - powerchh_F1
   - 🇺🇸 美国西雅图
   - 🇺🇸 美国西雅图2
   - 🇺🇸 美国硅谷
@@ -318,6 +320,7 @@ proxy-groups:
 - interval: 7200
   name: 🇭🇰 香港智能
   proxies:
+  - powerchh_F1
   - 🇭🇰香港中转[CM]
   - 🇭🇰香港精品4
   - 🇭🇰香港精品3
@@ -331,6 +334,7 @@ proxy-groups:
 - interval: 7200
   name: AI专用
   proxies:
+  - powerchh_F1
   - 🇺🇸 美国西雅图
   - 🇺🇸 美国西雅图2
   - 🇺🇸 美国洛杉矶[CU]
