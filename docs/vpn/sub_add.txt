@@ -1,0 +1,1 @@
+  - {name: 🇭🇰 icook.hk, server: icook.hk, port: 443, type: vless, uuid: 2ad91d06-ebba-45bf-a609-3cddba7b9604, tls: true, tfo: false, skip-cert-verify: true, servername: cmzijiami.820810.xyz, client-fingerprint: random, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: cmzijiami.820810.xyz}}}
