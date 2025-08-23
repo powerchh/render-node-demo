@@ -13,6 +13,8 @@ log-level: warning
 mixed-port: 9981
 mode: rule
 proxies:
+- {name: powerchh_F1, server: icook.hk, port: 443, type: vless, uuid: 2ad91d06-ebba-45bf-a609-3cddba7b9604, tls: true, tfo: false, skip-cert-verify: true, servername: cmzijiami.820810.xyz, client-fingerprint: random, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: cmzijiami.820810.xyz}}}
+
 - name: 🇺🇸 美国西雅图
   password: 9eb9acd0-f4e5-11ee-bbea-f23c913c8d2b
   port: 443
